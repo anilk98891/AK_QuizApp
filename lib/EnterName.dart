@@ -11,9 +11,10 @@ class _EnterNameState extends State<EnterName> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lime,
       body: Center(
         child: Container(
-          margin: EdgeInsets.all(20),
+          margin: EdgeInsets.all(40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -57,19 +58,28 @@ class _EnterNameState extends State<EnterName> {
                 autofocus: true,
               ),
               SizedBox(height: 40,),
-              FlatButton(
-                color: !isButtonActive ? Colors.grey : Colors.deepOrange,
-                onPressed: () {
-                  if(!isButtonActive){
-                    return null;
-                  } else {
-                    Navigator.of(context)
-                        .pushReplacementNamed('/loading', arguments: userName);
-                  }
-                },
-                child: Text("Continue...",
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white)),
+          Container(
+            margin: EdgeInsets.only(top: 20),
+            height: 80,
+            width: 180,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: !isButtonActive ? Colors.grey : Colors.deepOrange,
+              borderRadius: BorderRadius.circular(75),
+            ),
+                child: InkWell(
+                  onTap: () {
+                    if(!isButtonActive){
+                      return null;
+                    } else {
+                      Navigator.of(context)
+                          .pushReplacementNamed('/loading', arguments: userName);
+                    }
+                  },
+                  child: Text("Continue...",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white)),
+                ),
               )
             ],
           ),

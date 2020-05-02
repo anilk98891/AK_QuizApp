@@ -9,7 +9,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin{
   Animation<Color> animation;
   AnimationController controller;
-  double height = 100;
+  double height = 0;
   double opacity = 1;
   double heightCenter = 0;
   double centerOpacity = 0;
@@ -18,18 +18,18 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   void initState() {
     super.initState();
     controller =
-        AnimationController(duration: const Duration(seconds:3), vsync: this);
+        AnimationController(duration: const Duration(seconds:2), vsync: this);
     animation =
-    ColorTween(begin: Colors.red, end: Colors.lime).animate(controller)
+    ColorTween(begin: Colors.grey, end: Colors.white).animate(controller)
       ..addListener(() {
         setState(() {
           if(height > MediaQuery.of(context).size.width/1.2) {
-            centerOpacity += centerOpacity >=1 ? 1 : 0.005;
-            heightCenter = heightCenter >= 150 ? 150 : heightCenter += 1;
-            imageCenterIconHeight += 0.3;
+            centerOpacity += centerOpacity >=1 ? 1 : 0.015;
+            heightCenter = heightCenter >= 100 ? 100 : heightCenter += 2;
+            imageCenterIconHeight += 0.5;
           }
-          height += 4;
-          opacity -= opacity <=0 ? 0 : 0.005;
+          height = height < MediaQuery.of(context).size.height ? height+20 : MediaQuery.of(context).size.height;
+          opacity -= opacity <=0 ? 0 : 0.01;
           // The state that has changed here is the animation object’s value.
         });
       });
@@ -54,14 +54,14 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           children: <Widget>[
             Container(
         alignment: Alignment.topLeft,
-              color: Colors.white.withOpacity(opacity),
+              color: Colors.deepPurpleAccent.withOpacity(opacity),
               width: height/2,
               height: height,
             ),
             Align(
               alignment: Alignment.bottomRight,
               child: Container(
-                color: Colors.black.withOpacity(opacity),
+                color: Colors.blueAccent.withOpacity(opacity),
                 width: height/2,
                 height: height,
               ),
@@ -70,12 +70,12 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
               child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(75),
-                    color: Colors.indigo.withOpacity(centerOpacity),
+                    color: Colors.grey[800].withOpacity(centerOpacity),
                   ),
                   alignment: Alignment.center,
                   width: heightCenter,
                   height: heightCenter,
-                  child: IconButton(icon: Icon(Icons.home,size: imageCenterIconHeight,), onPressed: (){
+                  child: IconButton(icon: Icon(Icons.home,size: imageCenterIconHeight,color: Colors.limeAccent,), onPressed: (){
                     Navigator.pushReplacementNamed(context, '/choice');
                     print('tap');
                   })
