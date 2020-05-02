@@ -23,13 +23,19 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     ColorTween(begin: Colors.grey, end: Colors.white).animate(controller)
       ..addListener(() {
         setState(() {
+          print('height $height');
+          print('heightCenter $heightCenter');
+          print('centerOpacity $centerOpacity');
+          print('imageCenterIconHeight $imageCenterIconHeight');
+          print('opacity $opacity');
+
           if(height > MediaQuery.of(context).size.width/1.2) {
-            centerOpacity += centerOpacity >=1 ? 1 : 0.015;
-            heightCenter = heightCenter >= 100 ? 100 : heightCenter += 2;
-            imageCenterIconHeight += 0.5;
+            centerOpacity = centerOpacity >=0.9 ? 1 : centerOpacity+0.1;
+            heightCenter = heightCenter >= 97 ? 100 : heightCenter += 3;
+            imageCenterIconHeight = imageCenterIconHeight > 25 ? 25 : imageCenterIconHeight += 1;
           }
           height = height < MediaQuery.of(context).size.height ? height+20 : MediaQuery.of(context).size.height;
-          opacity -= opacity <=0 ? 0 : 0.01;
+          opacity = opacity <= 0.1 ? 0 :opacity - 0.02;
           // The state that has changed here is the animation object’s value.
         });
       });
@@ -55,14 +61,14 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             Container(
         alignment: Alignment.topLeft,
               color: Colors.deepPurpleAccent.withOpacity(opacity),
-              width: height/2,
+              width: MediaQuery.of(context).size.width,
               height: height,
             ),
             Align(
               alignment: Alignment.bottomRight,
               child: Container(
                 color: Colors.blueAccent.withOpacity(opacity),
-                width: height/2,
+                width: MediaQuery.of(context).size.width,
                 height: height,
               ),
             ),
