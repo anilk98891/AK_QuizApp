@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "503936446746",
+    "firebase_url": "https://flutter-f0bb7.firebaseio.com",
+    "project_id": "flutter-f0bb7",
+    "storage_bucket": "flutter-f0bb7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503936446746:android:c89f72e7f23eb7c87dbca3",
+        "android_client_info": {
+          "package_name": "com.anilk98891.anilQuiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "503936446746-gvdtgtc205r34j0vlk44nc8s4v8daa3d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCb0V4kl2SEXisSeEc3irBvzV1-JE8xAzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "503936446746-gvdtgtc205r34j0vlk44nc8s4v8daa3d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "503936446746-tt8cqh12ll75nhh8hk5g468stnurkol7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.anilk98891.anilQuiz"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
