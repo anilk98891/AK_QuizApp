@@ -7,6 +7,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin{
+
   Animation<Color> animation;
   AnimationController controller;
   double height = 0;
@@ -14,20 +15,16 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   double heightCenter = 0;
   double centerOpacity = 0;
   double imageCenterIconHeight = 0;
+
   @override
   void initState() {
     super.initState();
     controller =
         AnimationController(duration: const Duration(seconds:2), vsync: this);
     animation =
-    ColorTween(begin: Colors.grey, end: Colors.white).animate(controller)
+    ColorTween(begin: Colors.white, end: Colors.grey[350]).animate(controller)
       ..addListener(() {
         setState(() {
-          print('height $height');
-          print('heightCenter $heightCenter');
-          print('centerOpacity $centerOpacity');
-          print('imageCenterIconHeight $imageCenterIconHeight');
-          print('opacity $opacity');
 
           if(height > MediaQuery.of(context).size.width/1.2) {
             centerOpacity = centerOpacity >=0.9 ? 1 : centerOpacity+0.1;
@@ -76,14 +73,13 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
               child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(75),
-                    color: Colors.grey[800].withOpacity(centerOpacity),
+                    color: Colors.deepPurpleAccent.withOpacity(centerOpacity),
                   ),
                   alignment: Alignment.center,
                   width: heightCenter,
                   height: heightCenter,
-                  child: IconButton(icon: Icon(Icons.home,size: imageCenterIconHeight,color: Colors.limeAccent,), onPressed: (){
-                    Navigator.pushReplacementNamed(context, '/choice');
-                    print('tap');
+                  child: IconButton(icon: Icon(Icons.home,size: imageCenterIconHeight,color: Colors.white,), onPressed: (){
+                    Navigator.pushReplacementNamed(context, '/loading');
                   })
               ),
             ),

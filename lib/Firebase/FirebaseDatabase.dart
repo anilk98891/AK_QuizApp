@@ -1,28 +1,30 @@
+import 'package:anilquizapp/Model/ScoreModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:userstories/Models/GalleryModel.dart';
 
 class DataBaseService {
   final String uid;
   DataBaseService({this.uid});
   //collection references
-  final CollectionReference galleryCollection =
-      Firestore.instance.collection('Gallery');
+  final CollectionReference scoreCollection =
+      Firestore.instance.collection('Score');
 
-  Future updateUserData(String location, String name) async {
-    return await galleryCollection
+  Future updateUserData(String score, String name) async {
+    return await scoreCollection
         .document(uid)
-        .setData({'location': location, 'name': name});
+        .setData({'score': score, 'name': name});
   }
 
   //gallery list from snapshot
-  List<GalleryModel> _galleryListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.documents.map((e) {
-      return GalleryModel(e.data['name'] ?? "", e.data['location'] ?? "");
+  List<ScoreModel> _scoreListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((score) {
+      return ScoreModel(
+        name: score.data["name"] ?? '',score: score.data["score"] ?? ''
+      );
     }).toList();
   }
 
 //get stream
-  Stream<List<GalleryModel>> get gallery {
-    return galleryCollection.snapshots().map(_galleryListFromSnapshot);
+  Stream<List<ScoreModel>>get scoreCard {
+    return scoreCollection.snapshots().map(_scoreListFromSnapshot);
   }
 }

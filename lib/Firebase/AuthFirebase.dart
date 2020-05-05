@@ -1,11 +1,11 @@
+import 'package:anilquizapp/Firebase/FirebaseDatabase.dart';
+import 'package:anilquizapp/Firebase/User.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:userstories/AuthModule/FirebaseDatabase.dart';
-import 'package:userstories/AuthModule/User.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future signiAnnon() async {
+  Future signInAnnOn() async {
     try{
       AuthResult result = await _auth.signInAnonymously();
       FirebaseUser user = result.user;
@@ -26,7 +26,7 @@ class AuthService {
       FirebaseUser user = result.user;
 
       //create new collection
-      await DataBaseService(uid: user.uid).updateUserData("Yol", "Anil");
+      await DataBaseService(uid: user.uid).updateUserData("100", "Anil");
       return _userFromFireBaseUser(user);
     } catch(e){
       print(e.toString());
@@ -34,7 +34,7 @@ class AuthService {
     }
   }
 
-  Future signup(email,password) async {
+  Future signUp(email,password) async {
     try {
      AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
      FirebaseUser user = result.user;

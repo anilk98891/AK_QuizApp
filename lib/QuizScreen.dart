@@ -1,3 +1,4 @@
+import 'package:anilquizapp/Designer/Button.dart';
 import 'package:anilquizapp/Model/QuestionModel.dart';
 import 'package:anilquizapp/Model/userScoreModel.dart';
 import 'package:flutter/material.dart';
@@ -257,57 +258,28 @@ class _QuizScreenState extends State<QuizScreen>
                       )),
                 ),
                 Center(
-                  child: FlatButton(
-                    onPressed: () {
-                      if (currentSelection != "") {
-                        scoreModelInstance.add(new UserScoreModel(
-                            userData["name"],
-                            currentSelection,
-                            instance[currentQuestionIndex-1].answer,
-                            currentQuestionIndex));
+                  child: customButton("Next", context, (e) {
+                    if (currentSelection != "") {
+                      scoreModelInstance.add(new UserScoreModel(
+                          userData["name"],
+                          currentSelection,
+                          instance[currentQuestionIndex - 1].answer,
+                          currentQuestionIndex));
 
-
-                        if (currentQuestionIndex == instance.length) {
-                          Navigator.pushReplacementNamed(context, '/result',
-                              arguments: scoreModelInstance);
-                        } else {
-                          setState(() {
-                            controller.forward();
-                            isNextClicked = 0;
-                            currentSelection = "";
-                            currentQuestionIndex++;
-                          });
-                        }
+                      if (currentQuestionIndex == instance.length) {
+                        Navigator.pushReplacementNamed(context, '/result',
+                            arguments: scoreModelInstance);
+                      } else {
+                        setState(() {
+                          controller.forward();
+                          isNextClicked = 0;
+                          currentSelection = "";
+                          currentQuestionIndex++;
+                        });
                       }
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(20),
-                      margin: EdgeInsets.only(left: 70, right: 70, top: 30),
-                      width: 160,
-                      height: 80,
-                      decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(40),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.indigo,
-                              blurRadius: 5.0,
-                              spreadRadius: 1.0,
-                            )
-                          ]),
-                      child: Container(
-                        child: Text(
-                          'Next',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.grey[200],
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                    }
+                  }, Colors.grey),
+//                  ),
                 ),
                 Stack(
                   children: <Widget>[
